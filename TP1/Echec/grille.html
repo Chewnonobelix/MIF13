@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="application/xml+xhtml; charset=utf-8" />
+		<meta http-equiv="Content-Language" content="fr" />
+		<meta name="author" content="Arnaud DUHAMEL" />
+		<meta name="description" content="MIF13 TP client" />
+		<title>Grille échiquier</title>
+	</head>
+	<body>
+		<script language="JavaScript">
+		var bool=false;
+		for(var l=0; l<8; l++)
+		{
+			for(var c=0; c<8; c++)
+			{
+				alert(50*l+', '+c + ', ' + bool);
+				if (bool) 
+				{
+					document.write('<rect width="50" height="50" x="'+50*l+'" y="'+50*c+'" style="fill: grey"></rect>');
+					bool = false;
+				}
+				else
+				{
+					bool = true
+				}
+			}
+		}			
+		</script>	
+	</body>
+</html>
