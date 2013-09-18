@@ -1,16 +1,16 @@
+
 function cree_echiquier(evt)
 {
-        svgdoc=evt.target.ownerDocument;
-        node=svgdoc.createElement("g");
-        node.setAttribute("id" , "affiche");
-        ou=evt.target;
-        ou.appendChild(node);
+        svgdoc=document;
+        node=svgdoc.createElementNS("http://www.w3.org/2000/svg" ,"g");
+        evt.appendChild(node);
 		var bool = false;
 		for(var j = 0; j<8;j++)
 		{
+			alert('Ligne ' + j);
 			for(var i = 0; i<8;i++)
 			{
-					node=svgdoc.createElement("rect");
+					node=svgdoc.createElementNS("http://www.w3.org/2000/svg" ,"rect");
 					node.setAttribute("x",50*i);
 					node.setAttribute("y",50*j);
 					
@@ -20,16 +20,15 @@ function cree_echiquier(evt)
 					if(bool)
 					{
 						node.setAttribute("fill","lightgrey");
-						bool = false;
 					}
 					else
 					{
 						node.setAttribute("fill","white");
-						bool = true;
 					}
-					ou=svgdoc.getElementById("affiche");
-					ou.appendChild(node);
-				
+					evt=svgdoc.getElementById("affiche");
+					evt.appendChild(node);
+					bool = !bool;
 			}
+			bool = !bool;
 		}
 }
