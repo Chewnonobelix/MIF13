@@ -2,15 +2,14 @@
 function cree_echiquier(evt)
 {
         svgdoc=document;
-        node=svgdoc.createElementNS("http://www.w3.org/2000/svg" ,"g");
-        evt.appendChild(node);
+        isis=svgdoc.createElementNS("http://www.w3.org/2000/svg" ,"g"); //noeud SVG "g"
+        evt.appendChild(isis);
 		var bool = false;
 		for(var j = 0; j<8;j++)
 		{
-			alert('Ligne ' + j);
-			for(var i = 0; i<8;i++)
+			for(var i = 1; i<9;i++)
 			{
-					node=svgdoc.createElementNS("http://www.w3.org/2000/svg" ,"rect");
+					var node=svgdoc.createElementNS("http://www.w3.org/2000/svg" ,"rect");
 					node.setAttribute("x",50*i);
 					node.setAttribute("y",50*j);
 					
@@ -25,10 +24,39 @@ function cree_echiquier(evt)
 					{
 						node.setAttribute("fill","white");
 					}
-					evt=svgdoc.getElementById("affiche");
-					evt.appendChild(node);
+					isis.appendChild(node);
+					
 					bool = !bool;
 			}
 			bool = !bool;
 		}
+		
+		for(var re=1;re<9;re++)
+		{
+			var node=svgdoc.createElementNS("http://www.w3.org/2000/svg" ,"text");
+			node.setAttribute("x",50*re);
+			node.setAttribute("y",450);
+			
+			node.setAttribute("width","50");
+			node.setAttribute("height","50");
+			
+			node.appendChild(svgdoc.createTextNode(''+re));
+			isis.appendChild(node);
+		}
+		
+		var bastet = new Array("H","G","F","E","D","C","B","A");
+		
+		for(var re=0;re<8;re++)
+		{
+			var node=svgdoc.createElementNS("http://www.w3.org/2000/svg" ,"text");
+			node.setAttribute("x",0);
+			node.setAttribute("y",50*(re+1));
+			
+			node.setAttribute("width","50");
+			node.setAttribute("height","50");
+			node.appendChild(svgdoc.createTextNode(bastet[re]));
+			isis.appendChild(node);
+		}
+		
+		
 }
