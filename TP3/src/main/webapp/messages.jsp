@@ -5,6 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@include src="Messages.java" %>
+  
 <!DOCTYPE html>
 <html>
     <head>
