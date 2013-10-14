@@ -2,16 +2,38 @@
 To change this template, choose Tools | Templates
 and open the template in the editor.
 -->
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
 <html>
-    <head>
-        <title></title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-    <body>
-        <div>TODO write content</div>
-        <form method="POST" action="">
-            <label for="l_message" >Message</label><input id="l_message" type="text" />
+  <head>
+    <title>Message</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+
+    <fieldset>
+
+        <legend>Message à envoyer</legend>
+
+        <form method="POST" action="messages.jsp" target="affichage" >
+          <div>
+              <input type="text" name="message" />
+              <input type="submit" value="Envoyer"/>
+          </div>
         </form>
-    </body>
+
+    </fieldset>
+
+
+    <form  method="GET" action="init" target="_parent">
+        <div>
+            <br/>
+            <input type="submit" name="deconnexion" value="Déconnexion" />
+        </div>
+    </form>
+         
+  </body>
 </html>
+

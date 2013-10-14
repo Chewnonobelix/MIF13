@@ -1,0 +1,17 @@
+/* 
+    Document   : template
+    Created on : 14 oct. 2013, 08:14:12
+    Author     : BJ
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.frame{
+        display:block;
+        width:100%;
+}
+
+.saisie{
+    width:90%;
+}
+
