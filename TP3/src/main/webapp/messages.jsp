@@ -7,24 +7,25 @@
 
 <%@page import="java.math.BigDecimal"%>
 <jsp:useBean id="messages" scope="application" class="Classes.GestionMessages"/>
-<jsp:useBean id="tools" scope="application" class="Classes.Tools"/>
+<jsp:useBean id="cookie_tools" scope="application" class="Classes.CookieTools"/>
 <%
+       
+    boolean afficher_message = false;  // booléens pour les actions à effectuer
+    boolean stocker_message = false;   // dans affichage ou stockage
+    int messages_client = 0;  // compteurs du nombre de messages
+    int messages_serveur = 0;
+    
+    // on récupère la méthode du formulaire
     String methode = request.getMethod();
 
+    // on récupère le cookie
     String nom = "lastModified";
-    Cookie cookie =tools.getCookie(request.getCookies(), nom);
+    Cookie cookie = cookie_tools.getCookie(request.getCookies(), nom);
 
-    boolean afficher_message = false;
-    boolean stocker_message = false;
-
-    int messages_client = 0;
-    int messages_serveur = 0;
-
-    
-    if(methode.equals("GET")){
+    if(methode.equals("GET")){  // si la méthode est GET
 
         
-        if(cookie == null){
+        if(cookie == null){   // on ajoute le cookie
             Cookie nouveau_cookie = new Cookie(nom, ""+0);
             nouveau_cookie.setMaxAge(500);
             response.addCookie(nouveau_cookie);
@@ -32,24 +33,25 @@
 
         else{
 
-        
+        // on récupère le nombre de messages de chaque côté
         messages_client = Integer.parseInt(cookie.getValue());
         
         messages_serveur = messages.nbMessagesStockes();
 
-        
+            // s'il y a plus de message sur le serveur
             if(messages_client < messages_serveur){
-                afficher_message = true;
+                afficher_message = true;    // on affiche
             }
             else{
-                response.setStatus(304);
+                response.setStatus(304);  // sinon erreur
             } 
         }
     }
     
-    else if(methode.equals("POST")){
-        afficher_message = true;
-        stocker_message = true;
+    else if(methode.equals("POST")){    // si la méthode est POST
+        
+        afficher_message = true;   // on affiche
+        stocker_message = true;    // et on stocke le message
     }
 %>
 
@@ -58,14 +60,14 @@
     <% } %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 
 
 <html>
     <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="refresh" content="2" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="refresh" content="2" />
+        <link rel="stylesheet" type="text/css" href="style.css" media="screen"/>
     <title>Chat-Room ___ooo(O.O)ooo___</title>
     </head>
 

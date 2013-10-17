@@ -4,27 +4,29 @@
     Author     : BJ
 --%>
 
-<%-- Affiche les messages et met à jour le cookie --%>
-
 <%@page import="Classes.Message"%>
 <jsp:useBean id="messages" scope="application" class="Classes.GestionMessages"/>
-<jsp:useBean id="tools" scope="application" class="Classes.Tools"/>
+<jsp:useBean id="cookie_tools" scope="application" class="Classes.CookieTools"/>
 
 <%
 
     String nom = "lastModified";
 
-    messages.compteurAffichage+=1;
+    messages.compteurAffichage++;
 
+    // on parcourt la liste des messages
     for(int i = 0; i < messages.nbMessagesStockes(); i++){
         
+        // on affiche chaque message de la liste avec son utilisateur
         out.print(messages.getMessage(i).getUtilisateur() + " : ");
         out.print(messages.getMessage(i).getContenu() + "<br/><br/>");
     }
 
 
-    Cookie cookie = tools.getCookie(request.getCookies(), nom);
+    // on récupère le cookie
+    Cookie cookie = cookie_tools.getCookie(request.getCookies(), nom);
 
+    // on le met à jour
     cookie.setValue(messages.tailleListeString());
     response.addCookie(new Cookie(nom, messages.tailleListeString()));
 
